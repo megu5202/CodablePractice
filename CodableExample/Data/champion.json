@@ -1,0 +1,80 @@
+{
+        "id": 42,
+        "name": "Test Champion",
+        "description": "Help others to grow!",
+        "owner_id": 6,
+        "owner_type": "Organization",
+        "created_at": "2015-01-30T08:36:04.709Z",
+        "updated_at": "2017-11-03T21:02:50.635Z",
+        "address1": "1234 Smith Lane",
+        "address2": null,
+        "city": "Telluride",
+        "state": "CO",
+        "postcode": "81320",
+        "country": "US",
+        "website": "http://www.google.com",
+        "email": null,
+        "phone": "(123) 456-7890",
+        "owner": {
+            "id": 12,
+            "name": "Test Owner",
+            "owner_id": 12,
+            "created_at": "2015-01-30T08:35:51.054Z",
+            "updated_at": "2015-01-30T08:35:51.070Z",
+            "address1": "1234 Smith Lane",
+            "address2": null,
+            "city": "Telluride",
+            "state": "CO",
+            "postcode": "81320",
+            "country": "US",
+            "website": null,
+            "email": null,
+            "phone": "(123) 456-7890"
+        },
+        "banner": {
+            "id": 2045,
+            "caption": null,
+            "description": null,
+            "meta": {
+                "width": 1100,
+                "colors": [
+                           ["#1C91CB", 17.3],
+                           ["#020711", 14.5],
+                           ["#84EBF6", 13.8],
+                           ["#5CC1E2", 11.4],
+                           ["#DBFBFD", 11.2],
+                           ["#0D5994", 6.7],
+                           ["#061929", 4.5],
+                           ["#08478F", 4.0],
+                           ["#2D6184", 3.4],
+                           ["#0A111E", 2.2],
+                           ["#020004", 1.9],
+                           ["#A8FAF8", 1.7],
+                           ["#112536", 1.4],
+                           ["#ECFDF7", 1.0],
+                           ["#040003", 0.9]
+                           ],
+                "format": "png",
+                "height": 407
+            },
+            "src": "//res.cloudinary.com/glooops-prod/image/upload/v1430431113/champions/18/ub7rt2kgazqv1cmb4zec.png",
+            "media_type": "image"
+        },
+        "icon": {
+            "id": 123550,
+            "caption": null,
+            "description": null,
+            "meta": {
+                "etag": "2638b374470a2ca9eca49bc95a65569f",
+                "width": 1280,
+                "colors": [
+                           ["#010101", 79],
+                           ["#FBFBFB", 20]
+                           ],
+                "format": "png",
+                "height": 1280
+            },
+            "src": "//res.cloudinary.com/glooops-prod/image/upload/v1503516768/champions/320/i4fat6ag7i4udxyhjigj.png",
+            "media_type": "image"
+        }
+    }
