@@ -14,6 +14,12 @@
 		5C6FC6791FB64DDC00F131BD /* ChampionRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6FC6781FB64DDC00F131BD /* ChampionRequests.swift */; };
 		5C6FC67C1FB655E100F131BD /* OurDecoders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6FC67B1FB655E100F131BD /* OurDecoders.swift */; };
 		5C6FC67F1FB6573B00F131BD /* ChampionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6FC67E1FB6573B00F131BD /* ChampionService.swift */; };
+		A5138F971FC4DE10000EE42A /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5138F961FC4DE10000EE42A /* Post.swift */; };
+		A5138F991FC4DF7A000EE42A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5138F981FC4DF7A000EE42A /* User.swift */; };
+		A5138F9B1FC5F1B4000EE42A /* ArtifactSkeleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5138F9A1FC5F1B4000EE42A /* ArtifactSkeleton.swift */; };
+		A5138F9D1FC5F6B6000EE42A /* feedPost.json in Resources */ = {isa = PBXBuildFile; fileRef = A5138F9C1FC5F6B6000EE42A /* feedPost.json */; };
+		A5138F9F1FC5F6C8000EE42A /* spacePost.json in Resources */ = {isa = PBXBuildFile; fileRef = A5138F9E1FC5F6C8000EE42A /* spacePost.json */; };
+		A5138FA11FC6032C000EE42A /* MarkupToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5138FA01FC6032C000EE42A /* MarkupToken.swift */; };
 		A5B8736C1FBCAFBA00F78443 /* ProgramSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B8736B1FBCAFBA00F78443 /* ProgramSection.swift */; };
 		A5B873701FBCB02900F78443 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B8736F1FBCB02900F78443 /* Review.swift */; };
 		A5B873721FBCB0DF00F78443 /* MediaSkeleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B873711FBCB0DF00F78443 /* MediaSkeleton.swift */; };
@@ -40,6 +46,12 @@
 		5C6FC6781FB64DDC00F131BD /* ChampionRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChampionRequests.swift; sourceTree = "<group>"; };
 		5C6FC67B1FB655E100F131BD /* OurDecoders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OurDecoders.swift; sourceTree = "<group>"; };
 		5C6FC67E1FB6573B00F131BD /* ChampionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChampionService.swift; sourceTree = "<group>"; };
+		A5138F961FC4DE10000EE42A /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		A5138F981FC4DF7A000EE42A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		A5138F9A1FC5F1B4000EE42A /* ArtifactSkeleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtifactSkeleton.swift; sourceTree = "<group>"; };
+		A5138F9C1FC5F6B6000EE42A /* feedPost.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = feedPost.json; sourceTree = "<group>"; };
+		A5138F9E1FC5F6C8000EE42A /* spacePost.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = spacePost.json; sourceTree = "<group>"; };
+		A5138FA01FC6032C000EE42A /* MarkupToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkupToken.swift; sourceTree = "<group>"; };
 		A5B8736B1FBCAFBA00F78443 /* ProgramSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramSection.swift; sourceTree = "<group>"; };
 		A5B8736F1FBCB02900F78443 /* Review.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		A5B873711FBCB0DF00F78443 /* MediaSkeleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaSkeleton.swift; sourceTree = "<group>"; };
@@ -141,6 +153,8 @@
 			children = (
 				A5D55E471FB4F58600B387AF /* champion.json */,
 				A5D55E491FB5050800B387AF /* program.json */,
+				A5138F9C1FC5F6B6000EE42A /* feedPost.json */,
+				A5138F9E1FC5F6C8000EE42A /* spacePost.json */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -148,12 +162,16 @@
 		A5D55E451FB4F4E800B387AF /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				A5138F9A1FC5F1B4000EE42A /* ArtifactSkeleton.swift */,
 				A5B873711FBCB0DF00F78443 /* MediaSkeleton.swift */,
 				A5BD5AB11FB3A746005105A0 /* Image.swift */,
 				A5BD5AB31FB3A82C005105A0 /* Champion.swift */,
+				A5138F981FC4DF7A000EE42A /* User.swift */,
 				A5B8736B1FBCAFBA00F78443 /* ProgramSection.swift */,
 				A5B8736F1FBCB02900F78443 /* Review.swift */,
 				A5D55E4B1FB5083100B387AF /* Program.swift */,
+				A5138F961FC4DE10000EE42A /* Post.swift */,
+				A5138FA01FC6032C000EE42A /* MarkupToken.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -218,6 +236,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5D55E481FB4F58600B387AF /* champion.json in Resources */,
+				A5138F9F1FC5F6C8000EE42A /* spacePost.json in Resources */,
+				A5138F9D1FC5F6B6000EE42A /* feedPost.json in Resources */,
 				A5D55E4A1FB5050900B387AF /* program.json in Resources */,
 				A5BD5AAA1FB3A71C005105A0 /* LaunchScreen.storyboard in Resources */,
 				A5BD5AA71FB3A71C005105A0 /* Assets.xcassets in Resources */,
@@ -235,6 +255,8 @@
 				5C6FC67F1FB6573B00F131BD /* ChampionService.swift in Sources */,
 				A5BD5AB41FB3A82C005105A0 /* Champion.swift in Sources */,
 				A5B873721FBCB0DF00F78443 /* MediaSkeleton.swift in Sources */,
+				A5138FA11FC6032C000EE42A /* MarkupToken.swift in Sources */,
+				A5138F9B1FC5F1B4000EE42A /* ArtifactSkeleton.swift in Sources */,
 				A5D55E4C1FB5083100B387AF /* Program.swift in Sources */,
 				5C6FC66F1FB6200B00F131BD /* APIRequestOperation.swift in Sources */,
 				5C6FC67C1FB655E100F131BD /* OurDecoders.swift in Sources */,
@@ -245,9 +267,11 @@
 				A5BD5AA21FB3A71C005105A0 /* ViewController.swift in Sources */,
 				A5BD5AB21FB3A746005105A0 /* Image.swift in Sources */,
 				5C6FC6791FB64DDC00F131BD /* ChampionRequests.swift in Sources */,
+				A5138F991FC4DF7A000EE42A /* User.swift in Sources */,
 				A5B873811FBCB14800F78443 /* URL+Extensions.swift in Sources */,
 				5C6FC6751FB64BA100F131BD /* Operation.swift in Sources */,
 				5C6FC6731FB63D0C00F131BD /* APIRequest.swift in Sources */,
+				A5138F971FC4DE10000EE42A /* Post.swift in Sources */,
 				A5B873801FBCB14800F78443 /* UIColor+Extensions.swift in Sources */,
 				A5BD5AA01FB3A71C005105A0 /* AppDelegate.swift in Sources */,
 			);

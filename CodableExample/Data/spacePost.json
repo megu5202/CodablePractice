@@ -1,0 +1,47 @@
+{
+    "id": 177040,
+    "postable_id": 14469,
+    "postable_type": "Space",
+    "user_id": 273228,
+    "owner_type": "User",
+    "owner_id": 273228,
+    "body": "test posting to a space",
+    "post_type": "activity",
+    "activity_type": "comment",
+    "created_at": "2017-11-14T21:45:01.901Z",
+    "updated_at": "2017-11-14T21:45:01.901Z",
+    "owner": {
+        "id": 273228,
+        "username": "billy",
+        "first_name": "Billy",
+        "last_name": "Bob",
+        "name": "Billy Bob",
+        "avatar": null,
+        "banner": null
+    },
+    "artifact": null,
+    "comments_count": 0,
+    "linkable_id": 177038,
+    "linkable_type": "Post",
+    "linkable_owner": {
+        "id": 273228,
+        "username": "billy",
+        "first_name": "Billy",
+        "last_name": "Bob",
+        "name": "Billy Bob",
+        "avatar": null,
+        "banner": null
+    },
+    "linkable_owner_type": "User",
+    "user": {
+        "id": 273228,
+        "username": "billy",
+        "first_name": "Billy",
+        "last_name": "Bob",
+        "name": "Billy Bob",
+        "avatar": null,
+        "banner": null
+    },
+    "links": [],
+    "markup_tokens": []
+}

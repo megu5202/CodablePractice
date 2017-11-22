@@ -10,6 +10,9 @@ class ViewController: UIViewController {
         fetchLocalChampionData()
         fetchProgramData()
 //        fetchRemoteChampionData()
+        
+        fetchLocalSpacePostData()
+        fetchLocalFeedPostData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -25,7 +28,7 @@ class ViewController: UIViewController {
             let championSkeleton = try OurDecoders.iso8601milliSeconds.decode(ChampionSkeleton.self, from: data)
             let champion = Champion(from: championSkeleton)
             
-            print("IT WORKS! IT'S ALIVE ------ \(champion.name) has an image with height: \(champion.banner.height)")
+            print("Parse CHAMPION ------ \(champion.name) has an image with height: \(champion.banner?.height ?? 0)")
         } catch {
             print("\(error)")
         }
@@ -39,8 +42,7 @@ class ViewController: UIViewController {
             let programSkeleton = try OurDecoders.iso8601milliSeconds.decode(ProgramSkeleton.self, from: data)
             let program = Program(from: programSkeleton)
             
-            print("IT WORKS? I just tried to parse \(program.title) that has \(program.numberOfSections) sections and was written by \(program.champion.name)")
-            print("Linearize that stuff... \(program.linearizedSections().count)")
+            print("Parse PROGRAM------ \(program.title) that has \(program.numberOfSections) sections and was written by \(program.champion.name). Linearized sections: \(program.linearizedSections().count)")
         } catch {
             print("\(error)")
         }
@@ -50,10 +52,38 @@ class ViewController: UIViewController {
         championService.getChampion(byId: 5202) { result in
             switch result {
             case let .success(champion):
-                print("Fetched a champion!! \(champion.name)")
+                print("Parse CHAMPION ------ \(champion.name)")
             case .failure:
                 return
             }
+        }
+    }
+    
+    func fetchLocalSpacePostData() {
+        let filePath = Bundle.main.path(forResource: "spacePost", ofType: "json")!
+        let data = try! Data(contentsOf: URL(fileURLWithPath: filePath), options: .uncached)
+        
+        do {
+            let postSkeleton = try OurDecoders.iso8601milliSeconds.decode(PostSkeleton.self, from: data)
+            let post = Post(from: postSkeleton)
+            
+            print("Parse SPACE POST ------ \"\(post.body)\" by \(post.user.displayName)")
+        } catch {
+            print("\(error)")
+        }
+    }
+    
+    func fetchLocalFeedPostData() {
+        let filePath = Bundle.main.path(forResource: "feedPost", ofType: "json")!
+        let data = try! Data(contentsOf: URL(fileURLWithPath: filePath), options: .uncached)
+        
+        do {
+            let postSkeleton = try OurDecoders.iso8601milliSeconds.decode(PostSkeleton.self, from: data)
+            let post = Post(from: postSkeleton)
+            
+            print("Parse FEED POST ------ \"\(post.body)\" by \(post.user.displayName)")
+        } catch {
+            print("\(error)")
         }
     }
 }

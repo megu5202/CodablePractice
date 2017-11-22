@@ -1,9 +1,16 @@
 import Foundation
 
-// MARK: Skeleton Model
+// MARK: Skeleton Models
 
+struct ChampionForTimelineSkeleton: Decodable, OwnerSkeleton {
+    var id: Int
+    var name: String
+    var created_at: Date
+    var updated_at: Date
+    var icon: MediaSkeleton
+}
 
-struct ChampionSkeleton: Decodable {
+struct ChampionSkeleton: Decodable, OwnerSkeleton {
     var id: Int
     var name: String
     var description: String
@@ -19,11 +26,12 @@ struct ChampionSkeleton: Decodable {
 struct Champion {
     var id: Int
     var name: String
-    var description: String
     var dateCreated: Date
     var dateUpdated: Date
-    var banner: Image
     var avatar: Image
+    
+    var description: String?
+    var banner: Image?
     var website: URL?
 }
 
@@ -37,5 +45,16 @@ extension Champion {
         website = skeleton.website
         banner = Image(from: skeleton.banner)
         avatar = Image(from: skeleton.icon)
+    }
+    
+    init(from skeleton: ChampionForTimelineSkeleton) {
+        id = skeleton.id
+        name = skeleton.name
+        description = nil
+        dateCreated = skeleton.created_at
+        dateUpdated = skeleton.updated_at
+        banner = nil
+        avatar = Image(from: skeleton.icon)
+        website = nil
     }
 }
