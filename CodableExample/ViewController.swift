@@ -7,12 +7,13 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        fetchLocalChampionData()
-        fetchProgramData()
+//        fetchLocalChampionData()
+//        fetchProgramData()
 //        fetchRemoteChampionData()
         
-        fetchLocalSpacePostData()
-        fetchLocalFeedPostData()
+//        fetchLocalSpacePostData()
+//        fetchLocalFeedPostData()
+        fetchLocalSpaceData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -67,7 +68,7 @@ class ViewController: UIViewController {
             let postSkeleton = try OurDecoders.iso8601milliSeconds.decode(PostSkeleton.self, from: data)
             let post = Post(from: postSkeleton)
             
-            print("Parse SPACE POST ------ \"\(post.body)\" by \(post.user.displayName)")
+            print("Parse SPACE POST ------ \"\(post.body)\" by \(post.user?.displayName)")
         } catch {
             print("\(error)")
         }
@@ -81,7 +82,21 @@ class ViewController: UIViewController {
             let postSkeleton = try OurDecoders.iso8601milliSeconds.decode(PostSkeleton.self, from: data)
             let post = Post(from: postSkeleton)
             
-            print("Parse FEED POST ------ \"\(post.body)\" by \(post.user.displayName)")
+            print("Parse FEED POST ------ \"\(post.body)\" by \(post.user?.displayName)")
+        } catch {
+            print("\(error)")
+        }
+    }
+    
+    func fetchLocalSpaceData() {
+        let filePath = Bundle.main.path(forResource: "space", ofType: "json")!
+        let data = try! Data(contentsOf: URL(fileURLWithPath: filePath), options: .uncached)
+        
+        do {
+            let spaceSkeleton = try OurDecoders.iso8601milliSeconds.decode(SpaceSkeleton.self, from: data)
+            let space = Space(from: spaceSkeleton)
+            
+            print("Parse SPACE ----- \(space.postCount) posts in the example space")
         } catch {
             print("\(error)")
         }

@@ -42,7 +42,7 @@ struct ColorPredominanceSkeleton: Decodable {
     }
 }
 
-class ImageMetaSkeleton: Decodable, MediaMetaSkeleton {
+struct ImageMetaSkeleton: Decodable, MediaMetaSkeleton {
     var width: Int
     var height: Int
     var format: String

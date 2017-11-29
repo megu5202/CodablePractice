@@ -12,6 +12,8 @@ enum PostType: String, Decodable {
 
 enum ActivityType: String, Decodable {
     case comment
+    case welcome_message
+    case membership_created
 }
 
 enum OwnerType: String, Decodable {
@@ -25,7 +27,7 @@ class PostSkeleton: Decodable {
     var postable_type: PostableType
     var post_type: PostType
     var activity_type: ActivityType?
-    var body: String
+    var body: String?
     var links: [URL]
     var markup_tokens: [MarkupTokenSkeleton]
     var created_at: Date
@@ -33,11 +35,11 @@ class PostSkeleton: Decodable {
     var comments_count: Int
     var artifact: ArtifactSkeleton?
     
-    var user_id: Int
-    var user: UserSkeleton
-    var owner_id: Int
-    var owner_type: OwnerType
-    var owner: OwnerSkeleton
+    var user_id: Int?
+    var user: UserSkeleton?
+    var owner_id: Int?
+    var owner_type: OwnerType?
+    var owner: OwnerSkeleton?
     var linkable_id: Int?
     var linkable_owner_type: OwnerType?
     var linkable_owner: OwnerSkeleton?
@@ -69,58 +71,57 @@ class PostSkeleton: Decodable {
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(Int.self, forKey: .id)
-        
         postable_id = try container.decode(Int.self, forKey: .postable_id)
         postable_type = try container.decode(PostableType.self, forKey: .postable_type)
         post_type = try container.decode(PostType.self, forKey: .post_type)
-        
-        body = try container.decode(String.self, forKey: .body)
         links = try container.decode([URL].self, forKey: .links)
         markup_tokens = try container.decode([MarkupTokenSkeleton].self, forKey: .markup_tokens)
         created_at = try container.decode(Date.self, forKey: .created_at)
         updated_at = try container.decode(Date.self, forKey: .updated_at)
-        user_id = try container.decode(Int.self, forKey: .user_id)
-        user = try container.decode(UserSkeleton.self, forKey: .user)
-        
-        artifact = try container.decode(ArtifactSkeleton?.self, forKey: .artifact)
         comments_count = try container.decode(Int.self, forKey: .comments_count)
         
-        owner_id  = try container.decode(Int.self, forKey: .owner_id)
-        owner_type = try container.decode(OwnerType.self, forKey: .owner_type)
-        switch (owner_type, postable_type) {
-        case (.Champion, .Timeline):
-            owner = try container.decode(ChampionForTimelineSkeleton.self, forKey: .owner)
-        default:
-            owner = try container.decode(UserSkeleton.self, forKey: .owner)
+        owner_id  = try container.decode(Int?.self, forKey: .owner_id)
+        user = try container.decode(UserSkeleton?.self, forKey: .user)
+        body = try container.decode(String?.self, forKey: .body)
+        artifact = try container.decode(ArtifactSkeleton?.self, forKey: .artifact)
+        linkable_id = try container.decode(Int?.self, forKey: .linkable_id)
+        linkable_owner_type = try container.decode(OwnerType?.self, forKey: .linkable_owner_type)
+        
+        if let linkableOwnerType = linkable_owner_type {
+            switch (linkableOwnerType, postable_type) {
+            case (.Champion, .Timeline):
+                linkable_owner = try container.decode(ChampionForTimelineSkeleton.self, forKey: .linkable_owner)
+            default:
+                linkable_owner = try container.decode(UserSkeleton.self, forKey: .linkable_owner)
+            }
         }
         
-        do {
-            activity_type = try container.decode(ActivityType.self, forKey: .activity_type)
-            linkable_id = try container.decode(Int.self, forKey: .linkable_id)
-            linkable_owner_type = try container.decode(OwnerType.self, forKey: .linkable_owner_type)
-            
-            if let linkableOwnerType = linkable_owner_type {
-                switch (linkableOwnerType, postable_type) {
-                case (.Champion, .Timeline):
-                    linkable_owner = try container.decode(ChampionForTimelineSkeleton.self, forKey: .linkable_owner)
-                default:
-                    linkable_owner = try container.decode(UserSkeleton.self, forKey: .linkable_owner)
-                }
+        activity_type = try container.decode(ActivityType?.self, forKey: .activity_type)
+        
+        if let activityType = activity_type {
+            switch activityType {
+            case .comment, .membership_created:
+                user_id = try container.decode(Int.self, forKey: .user_id)
+            case .welcome_message:
+                user_id = nil
             }
-        } catch {
-            activity_type = nil
-            linkable_id = nil
-            linkable_owner_type = nil
+        }
+        
+        owner_type = try container.decode(OwnerType?.self, forKey: .owner_type)
+        
+        if let ownerType = owner_type {
+            switch (ownerType, postable_type) {
+            case (.Champion, .Timeline):
+                owner = try container.decode(ChampionForTimelineSkeleton.self, forKey: .owner)
+            default:
+                owner = try container.decode(UserSkeleton.self, forKey: .owner)
+            }
         }
     }
 }
 
 struct Post {
     var id: Int
-    var user: User
-    var body: String
-    var artifactType: ArtifactType?
-    var artifact: Artifact?
     var commentCount: Int
 //    var comments: [Comment]
 //    var linkable: String
@@ -128,9 +129,18 @@ struct Post {
     var dateCreated: Date
     var dateUpdated: Date
     
+    var user: User?
+    var body: String?
+    var artifactType: ArtifactType?
+    var artifact: Artifact?
+    
     init(from skeleton: PostSkeleton) {
         id = skeleton.id
-        user = User(from: skeleton.user)
+        
+        if let userSkeleton = skeleton.user {
+            user = User(from: userSkeleton)
+        }
+        
         body = skeleton.body
         commentCount = skeleton.comments_count
         markupTokens = skeleton.markup_tokens.flatMap { MarkupToken(from: $0) }
@@ -139,5 +149,8 @@ struct Post {
     }
     
 }
+
+// CAN WE NOT HAVE A WELCOME MESSAGE POST?! "This is the beginning of a space" is a dumb message.
+// EVERY post should have ONE user OR owner, not both, pick one, and it should always be returned.
 
 
